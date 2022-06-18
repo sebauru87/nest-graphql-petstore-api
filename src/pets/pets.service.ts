@@ -9,12 +9,20 @@ import { Pet } from './pet.entity';
 export class PetsService {
   constructor(@InjectRepository(Pet) private petsRepository: Repository<Pet>) {}
 
-  async createPet(createPetInput: CreatePetInput): Promise<Pet> {
-    const newPet = await this.petsRepository.create(createPetInput);
+  createPet(createPetInput: CreatePetInput): Promise<Pet> {
+    const newPet = this.petsRepository.create(createPetInput);
     return this.petsRepository.save(newPet);
   }
 
-  async findAll(): Promise<Pet[]> {
+  findAll(): Promise<Pet[]> {
     return this.petsRepository.find();
+  }
+
+  findOne(id: number): Promise<Pet> {
+    return this.petsRepository.findOneOrFail({
+      where: {
+        id,
+      },
+    });
   }
 }

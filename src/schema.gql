@@ -9,6 +9,7 @@ type Pet {
 }
 
 type Query {
+  getPet(id: Int!): Pet!
   pets: [Pet!]!
 }
 
