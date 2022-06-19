@@ -71,3 +71,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Nest cli
+- nest g resource owners
+generates all the code, CRUD functionalities folder and files for graphQL

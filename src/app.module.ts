@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PetsModule } from './pets/pets.module';
+import { OwnersModule } from './owners/owners.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { PetsModule } from './pets/pets.module';
       synchronize: true,
     }),
     PetsModule,
+    OwnersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
