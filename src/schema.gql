@@ -26,6 +26,8 @@ type Query {
 type Mutation {
   createPet(createPetInput: CreatePetInput!): Pet!
   createOwner(createOwnerInput: CreateOwnerInput!): Owner!
+  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
+  removeOwner(id: Int!): Owner!
 }
 
 input CreatePetInput {
@@ -37,4 +39,10 @@ input CreatePetInput {
 input CreateOwnerInput {
   firstName: String!
   lastName: String!
+}
+
+input UpdateOwnerInput {
+  firstName: String
+  lastName: String
+  id: Int!
 }
