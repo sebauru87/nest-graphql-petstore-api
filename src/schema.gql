@@ -2,9 +2,45 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Owner {
-  id: Int!
+input CreateOwnerInput {
   firstName: String!
+  lastName: String!
+}
+
+input CreatePetInput {
+  name: String!
+  ownerId: Int!
+  type: String
+}
+
+input CreateUserInput {
+  password: String!
+  username: String!
+}
+
+type LoginResponse {
+  access_token: String!
+  user: User!
+}
+
+input LoginUserInput {
+  password: String!
+  username: String!
+}
+
+type Mutation {
+  createOwner(createOwnerInput: CreateOwnerInput!): Owner!
+  createPet(createPetInput: CreatePetInput!): Pet!
+  createUser(createUserInput: CreateUserInput!): User!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
+  removeOwner(id: Int!): Owner!
+  signup(loginUserInput: LoginUserInput!): User!
+  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
+}
+
+type Owner {
+  firstName: String!
+  id: Int!
   lastName: String!
   pets: [Pet!]
 }
@@ -12,37 +48,27 @@ type Owner {
 type Pet {
   id: Int!
   name: String!
-  type: String
-  ownerId: Int!
   owner: Owner!
+  ownerId: Int!
+  type: String
 }
 
 type Query {
   getPet(id: Int!): Pet!
-  pets: [Pet!]!
   owners: [Owner!]!
-}
-
-type Mutation {
-  createPet(createPetInput: CreatePetInput!): Pet!
-  createOwner(createOwnerInput: CreateOwnerInput!): Owner!
-  updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
-  removeOwner(id: Int!): Owner!
-}
-
-input CreatePetInput {
-  name: String!
-  type: String
-  ownerId: Int!
-}
-
-input CreateOwnerInput {
-  firstName: String!
-  lastName: String!
+  pets: [Pet!]!
+  user(username: String!): User!
+  users: [User!]!
 }
 
 input UpdateOwnerInput {
   firstName: String
-  lastName: String
   id: Int!
+  lastName: String
+}
+
+type User {
+  id: Int!
+  password: String!
+  username: String!
 }

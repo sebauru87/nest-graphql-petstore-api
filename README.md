@@ -74,4 +74,10 @@ Nest is [MIT licensed](LICENSE).
 
 ## Nest cli
 - nest g resource owners
+- nest g resource pets
+- nest g resource users
 generates all the code, CRUD functionalities folder and files for graphQL
+- nest g module auth
+- nest g service auth
+- nest g resolver auth
+
