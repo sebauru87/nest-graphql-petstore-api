@@ -21,7 +21,7 @@ export class Pet {
   @Field(() => Int)
   ownerId: number;
 
-  @ManyToOne(() => Owner, (owner) => owner.pets)
+  @ManyToOne(() => Owner, (owner) => owner.pets, { onDelete: 'CASCADE' }) // si elimina owner, se borra todos los pets
   @Field(() => Owner)
   owner: Owner;
 }
