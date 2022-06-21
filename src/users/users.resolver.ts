@@ -1,5 +1,9 @@
 import { Resolver, Query, Mutation, Args, Int, Context } from '@nestjs/graphql';
-import { UseGuards } from '@nestjs/common';
+import {
+  UseGuards,
+  ClassSerializerInterceptor,
+  UseInterceptors,
+} from '@nestjs/common';
 
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
@@ -11,6 +15,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Mutation(() => User)
   createUser(
     @Args('createUserInput') createUserInput: CreateUserInput,
@@ -19,6 +24,7 @@ export class UsersResolver {
   }
 
   @UseGuards(JwtAuthGuard)
+  @UseInterceptors(ClassSerializerInterceptor)
   @Query(() => [User], { name: 'users' })
   // users() {
   users(@Context() context) {

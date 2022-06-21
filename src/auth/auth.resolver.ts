@@ -1,4 +1,8 @@
-import { UseGuards } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 
 import { AuthService } from './auth.service';
@@ -22,6 +26,7 @@ export class AuthResolver {
     return this.authService.login(context.user);
   }
 
+  @UseInterceptors(ClassSerializerInterceptor)
   @Mutation(() => User)
   signup(@Args('loginUserInput') loginUserInput: LoginUserInput) {
     // return this.authService.login(loginUserInput);
