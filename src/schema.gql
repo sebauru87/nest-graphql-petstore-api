@@ -34,7 +34,7 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   login(loginUserInput: LoginUserInput!): LoginResponse!
   removeOwner(id: Int!): Owner!
-  signup(loginUserInput: LoginUserInput!): User!
+  signup(loginUserInput: LoginUserInput!): LoginResponse!
   updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
 }
 

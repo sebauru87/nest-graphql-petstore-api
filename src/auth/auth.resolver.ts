@@ -27,7 +27,7 @@ export class AuthResolver {
   }
 
   @UseInterceptors(ClassSerializerInterceptor)
-  @Mutation(() => User)
+  @Mutation(() => LoginResponse)
   signup(@Args('loginUserInput') loginUserInput: LoginUserInput) {
     // return this.authService.login(loginUserInput);
     return this.authService.signup(loginUserInput);
