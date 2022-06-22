@@ -14,9 +14,16 @@ input CreatePetInput {
 }
 
 input CreateUserInput {
+  firstName: String
+  lastName: String
   password: String!
   username: String!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type LoginResponse {
   access_token: String!
@@ -24,6 +31,8 @@ type LoginResponse {
 }
 
 input LoginUserInput {
+  firstName: String
+  lastName: String
   password: String!
   username: String!
 }
@@ -36,6 +45,7 @@ type Mutation {
   removeOwner(id: Int!): Owner!
   signup(loginUserInput: LoginUserInput!): LoginResponse!
   updateOwner(updateOwnerInput: UpdateOwnerInput!): Owner!
+  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Owner {
@@ -53,8 +63,17 @@ type Pet {
   type: String
 }
 
+type PetResponse {
+  createdDate: DateTime!
+  id: Int!
+  name: String!
+  owner: Owner!
+  ownerId: Int!
+  type: String
+}
+
 type Query {
-  getPet(id: Int!): Pet!
+  getPet(id: Int!): PetResponse!
   owners: [Owner!]!
   pets: [Pet!]!
   user(username: String!): User!
@@ -67,8 +86,18 @@ input UpdateOwnerInput {
   lastName: String
 }
 
-type User {
+input UpdateUserInput {
+  firstName: String
   id: Int!
+  lastName: String
+}
+
+type User {
+  createdDate: DateTime!
+  firstName: String
+  id: Int!
+  lastName: String
   password: String!
+  updatedDate: DateTime!
   username: String!
 }

@@ -10,4 +10,10 @@ export class CreateUserInput {
 
   @Field()
   password: string;
+
+  @Field({ nullable: true })
+  firstName?: string;
+
+  @Field({ nullable: true })
+  lastName?: string;
 }

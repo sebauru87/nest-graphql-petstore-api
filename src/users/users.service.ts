@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { CreateUserInput } from './dto/create-user.input';
-// import { UpdateUserInput } from './dto/update-user.input';
+import { UpdateUserInput } from './dto/update-user.input';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -29,9 +29,19 @@ export class UsersService {
     });
   }
 
-  // update(id: number, updateUserInput: UpdateUserInput) {
-  //   return `This action updates a #${id} user`;
-  // }
+  async update(id: number, updateUserInput: UpdateUserInput) {
+    // const user = await this.findOne(id);  este seria findOneOrFail
+    const user = await this.usersRepository.findOne({
+      where: {
+        id,
+      },
+    });
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
+    Object.assign(user, updateUserInput);
+    return this.usersRepository.save(user);
+  }
 
   // remove(id: number) {
   //   return `This action removes a #${id} user`;

@@ -9,7 +9,7 @@ import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-// import { UpdateUserInput } from './dto/update-user.input';
+import { UpdateUserInput } from './dto/update-user.input';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -40,10 +40,11 @@ export class UsersResolver {
     return this.usersService.findOne(username);
   }
 
-  // @Mutation(() => User)
-  // updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-  //   return this.usersService.update(updateUserInput.id, updateUserInput);
-  // }
+  @UseInterceptors(ClassSerializerInterceptor)
+  @Mutation(() => User)
+  updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
+    return this.usersService.update(updateUserInput.id, updateUserInput);
+  }
 
   // @Mutation(() => User)
   // removeUser(@Args('id', { type: () => Int }) id: number) {

@@ -6,6 +6,7 @@ import { CreatePetInput } from './dto/create-pet.input';
 import { Pet } from './pet.entity';
 import { OwnersService } from '../owners/owners.service';
 import { Owner } from '../owners/entities/owner.entity';
+import { PetResponse } from './dto/pet-response';
 
 @Injectable()
 export class PetsService {
@@ -23,7 +24,7 @@ export class PetsService {
     return this.petsRepository.find();
   }
 
-  findOne(id: number): Promise<Pet> {
+  findOne(id: number): Promise<PetResponse> {
     return this.petsRepository.findOneOrFail({
       where: {
         id,

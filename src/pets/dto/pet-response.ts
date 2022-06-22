@@ -3,27 +3,21 @@ import { Owner } from 'src/owners/entities/owner.entity';
 import {
   Column,
   CreateDateColumn,
-  Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity()
 @ObjectType()
-export class Pet {
-  @PrimaryGeneratedColumn()
+export class PetResponse {
   @Field(() => Int)
   id: number;
 
-  @Column()
   @Field()
   name: string;
 
-  @Column({ nullable: true })
   @Field({ nullable: true })
   type?: string;
 
-  @Column()
   @Field(() => Int)
   ownerId: number;
 
@@ -31,6 +25,6 @@ export class Pet {
   @Field(() => Owner)
   owner: Owner;
 
-  @CreateDateColumn()
+  @Field()
   createdDate: Date;
 }
