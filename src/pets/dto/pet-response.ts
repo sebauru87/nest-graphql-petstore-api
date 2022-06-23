@@ -1,5 +1,5 @@
 import { Field, ObjectType, Int } from '@nestjs/graphql';
-import { Owner } from 'src/owners/entities/owner.entity';
+import { Owner } from '../../owners/entities/owner.entity';
 import {
   Column,
   CreateDateColumn,

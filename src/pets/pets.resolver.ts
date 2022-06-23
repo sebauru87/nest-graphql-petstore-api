@@ -11,7 +11,7 @@ import {
 import { CreatePetInput } from './dto/create-pet.input';
 import { Pet } from './pet.entity';
 import { PetsService } from './pets.service';
-import { Owner } from 'src/owners/entities/owner.entity';
+import { Owner } from '../owners/entities/owner.entity';
 import { PetResponse } from './dto/pet-response';
 
 @Resolver((of) => Pet)
